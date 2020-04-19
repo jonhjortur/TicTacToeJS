@@ -55,7 +55,7 @@ function endGame(draw) {
     if (draw) {
         winningMessageTextElement.innerText = "JAFNTEFLI"
     } else {
-        winningMessageTextElement.innerText = `${circleTurn ? "0" : "X"} VANN`
+        winningMessageTextElement.innerText = `${circleTurn ? "O" : "X"} VANN`
     }
     winningMessageElement.classList.add('show')
 }

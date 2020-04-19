@@ -146,7 +146,6 @@ body {
 .winning-message button:hover {
     background-color: rgba(85, 187, 85, .7);
     color: rgba(255, 255, 255, .5);;
-    xborder-color: white;
 }
 
 .winning-message.show {
