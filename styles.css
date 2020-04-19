@@ -73,9 +73,10 @@ body {
 .board.circle .cell:not(.x):not(.circle):hover::before {
     background-color: rgb(153, 153, 153);
 }
-
+/*
 .cell.x::before,
 .cell.x::after,
+*/
 .board.x .cell:not(.x):not(.circle):hover::before,
 .board.x .cell:not(.x):not(.circle):hover::after {
     content: '';
@@ -84,16 +85,91 @@ body {
     height: var(--mark-size);
 }
 
-.cell.x::before,
+.cell.x::before {
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size) * .15);
+    animation: XoutBefore 1s;
+    animation-fill-mode: forwards;
+}
+
+
 .board.x .cell:not(.x):not(.circle):hover::before {
     transform: rotate(45deg);
 }
 
-.cell.x::after,
+.cell.x::after {
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size) * .15);
+    animation: XoutAfter 1s;
+    animation-fill-mode: forwards;
+}
 .board.x .cell:not(.x):not(.circle):hover::after  {
     transform: rotate(-45deg);
 }
 
+@-moz-keyframes XoutBefore {
+    0% {
+        transform: rotate(0deg);
+        height: 0px;
+    }
+    100% {
+        transform: rotate(45deg);
+        height: var(--mark-size)
+    }    
+}
+@-webkit-keyframes XoutBefore { 
+    0% {
+        transform: rotate(0deg);
+        height: 0px;
+    }
+    100% {
+        transform: rotate(45deg);
+        height: var(--mark-size)
+    }
+}
+@keyframes XoutBefore { 
+    0% {
+        transform: rotate(0deg);
+        height: 0px;
+    }
+    100% {
+        transform: rotate(45deg);
+        height: var(--mark-size)
+    }
+}
+
+@-moz-keyframes XoutAfter {
+    0% {
+        transform: rotate(0deg);
+        height: 0px;
+    }
+    100% {
+        transform: rotate(-45deg);
+        height: var(--mark-size)
+    }   
+}
+@-webkit-keyframes XoutAfter { 
+    0% {
+        transform: rotate(0deg);
+        height: 0px;
+    }
+    100% {
+        transform: rotate(-45deg);
+        height: var(--mark-size)
+    }  
+}
+@keyframes XoutAfter { 
+    0% {
+        transform: rotate(0deg);
+        height: 0px;
+    }
+    100% {
+        transform: rotate(-45deg);
+        height: var(--mark-size)
+    }
+}
 
 .cell.circle::before,
 .cell.circle::after,
