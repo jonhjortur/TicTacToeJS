@@ -73,10 +73,7 @@ body {
 .board.circle .cell:not(.x):not(.circle):hover::before {
     background-color: rgb(153, 153, 153);
 }
-/*
-.cell.x::before,
-.cell.x::after,
-*/
+
 .board.x .cell:not(.x):not(.circle):hover::before,
 .board.x .cell:not(.x):not(.circle):hover::after {
     content: '';
@@ -180,18 +177,87 @@ body {
     border-radius: 50%;
 }
 
-.cell.circle::before,
+.cell.circle::before {
+    animation: OoutBefore 1s;
+    animation-fill-mode: forwards;
+}
 .board.circle .cell:not(.x):not(.circle):hover::before {
     width: var(--mark-size);
     height: var(--mark-size);
 }
 
 
-.cell.circle::after,
+.cell.circle::after {
+    background-color: var(--bg-color);
+    animation: OoutAfter 1s;
+    animation-fill-mode: forwards;
+}
 .board.circle .cell:not(.x):not(.circle):hover::after {
     width: calc(var(--mark-size) * .7);
     height: calc(var(--mark-size) * .7);
     background-color: var(--bg-color);
+}
+
+@-moz-keyframes OoutBefore {
+    0% {
+        width: 0;
+        height: 0;
+    }
+    100% {
+        width: var(--mark-size);
+        height: var(--mark-size);
+    }
+}
+@-webkit-keyframes OoutBefore { 
+    0% {
+        width: 0;
+        height: 0;
+    }
+    100% {
+        width: var(--mark-size);
+        height: var(--mark-size);
+    }
+}
+@keyframes OoutBefore { 
+    0% {
+        width: 0;
+        height: 0;
+    }
+    100% {
+        width: var(--mark-size);
+        height: var(--mark-size);
+    }
+}
+
+@-moz-keyframes OoutAfter {
+    0% {
+        width: 0;
+        height: 0;
+    }
+    100% {
+        width: calc(var(--mark-size) * .7);
+        height: calc(var(--mark-size) * .7);
+    }
+}
+@-webkit-keyframes OoutAfter { 
+    0% {
+        width: 0;
+        height: 0;
+    }
+    100% {
+        width: calc(var(--mark-size) * .7);
+        height: calc(var(--mark-size) * .7);
+    }
+}
+@keyframes OoutAfter { 
+    0% {
+        width: 0;
+        height: 0;
+    }
+    100% {
+        width: calc(var(--mark-size) * .7);
+        height: calc(var(--mark-size) * .7);
+    }
 }
 
 .winning-message {
