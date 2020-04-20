@@ -20,8 +20,8 @@ let ohTurn;
 startGame();
 
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 restartBtn.addEventListener("click", startGame);
 
@@ -58,8 +58,7 @@ function endGame(draw) {
   } else {
     winMsgTextElem.innerText = `${ohTurn ? "O" : "X"} VANN`;
   }
-  /*Let the animation (nearly) finish */
-  sleep(900).then(() => {winMsgElem.classList.add("show");});
+  winMsgElem.classList.add("show");
 }
 
 function isDraw() {
