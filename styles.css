@@ -3,7 +3,7 @@
 }
 
 :root {
-    --sizer: 200px;
+    --sizer: 200px; /*Uuu....I mean scalar*/
     --btn-margin: calc(var(--sizer) * .25);
     --mark-size: calc(var(--sizer) * .9);
     --bg-color: #aaa;
@@ -56,7 +56,7 @@ body {
 }
 
 .cell.x,
-.cell.circle {
+.cell.oh {
     cursor: not-allowed;
 }
 
@@ -64,18 +64,18 @@ body {
 .cell.x::after {
     background-color: #a44;
 }
-.cell.circle::before {
+.cell.oh::before {
     background-color: #4ad;
 }
 
-.board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after,
-.board.circle .cell:not(.x):not(.circle):hover::before {
+.board.x .cell:not(.x):not(.oh):hover::before,
+.board.x .cell:not(.x):not(.oh):hover::after,
+.board.oh .cell:not(.x):not(.oh):hover::before {
     background-color: rgb(153, 153, 153);
 }
 
-.board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after {
+.board.x .cell:not(.x):not(.oh):hover::before,
+.board.x .cell:not(.x):not(.oh):hover::after {
     content: '';
     position: absolute;
     width: calc(var(--mark-size) * .15);
@@ -86,12 +86,12 @@ body {
     content: '';
     position: absolute;
     width: calc(var(--mark-size) * .15);
-    animation: XoutBefore 1s;
+    animation: XOutBefore 1s;
     animation-fill-mode: forwards;
 }
 
 
-.board.x .cell:not(.x):not(.circle):hover::before {
+.board.x .cell:not(.x):not(.oh):hover::before {
     transform: rotate(45deg);
 }
 
@@ -99,14 +99,14 @@ body {
     content: '';
     position: absolute;
     width: calc(var(--mark-size) * .15);
-    animation: XoutAfter 1s;
+    animation: XOutAfter 1s;
     animation-fill-mode: forwards;
 }
-.board.x .cell:not(.x):not(.circle):hover::after  {
+.board.x .cell:not(.x):not(.oh):hover::after  {
     transform: rotate(-45deg);
 }
 
-@-moz-keyframes XoutBefore {
+@-moz-keyframes XOutBefore {
     0% {
         transform: rotate(0deg);
         height: 0px;
@@ -116,7 +116,7 @@ body {
         height: var(--mark-size)
     }    
 }
-@-webkit-keyframes XoutBefore { 
+@-webkit-keyframes XOutBefore { 
     0% {
         transform: rotate(0deg);
         height: 0px;
@@ -126,7 +126,7 @@ body {
         height: var(--mark-size)
     }
 }
-@keyframes XoutBefore { 
+@keyframes XOutBefore { 
     0% {
         transform: rotate(0deg);
         height: 0px;
@@ -137,7 +137,7 @@ body {
     }
 }
 
-@-moz-keyframes XoutAfter {
+@-moz-keyframes XOutAfter {
     0% {
         transform: rotate(0deg);
         height: 0px;
@@ -147,7 +147,7 @@ body {
         height: var(--mark-size)
     }   
 }
-@-webkit-keyframes XoutAfter { 
+@-webkit-keyframes XOutAfter { 
     0% {
         transform: rotate(0deg);
         height: 0px;
@@ -157,7 +157,7 @@ body {
         height: var(--mark-size)
     }  
 }
-@keyframes XoutAfter { 
+@keyframes XOutAfter { 
     0% {
         transform: rotate(0deg);
         height: 0px;
@@ -168,31 +168,31 @@ body {
     }
 }
 
-.cell.circle::before,
-.cell.circle::after,
-.board.circle .cell:not(.x):not(.circle):hover::before,
-.board.circle .cell:not(.x):not(.circle):hover::after {
+.cell.oh::before,
+.cell.oh::after,
+.board.oh .cell:not(.x):not(.oh):hover::before,
+.board.oh .cell:not(.x):not(.oh):hover::after {
     content: '';
     position: absolute;
     border-radius: 50%;
 }
 
-.cell.circle::before {
+.cell.oh::before {
     animation: OoutBefore 1s;
     animation-fill-mode: forwards;
 }
-.board.circle .cell:not(.x):not(.circle):hover::before {
+.board.oh .cell:not(.x):not(.oh):hover::before {
     width: var(--mark-size);
     height: var(--mark-size);
 }
 
 
-.cell.circle::after {
+.cell.oh::after {
     background-color: var(--bg-color);
     animation: OoutAfter 1s;
     animation-fill-mode: forwards;
 }
-.board.circle .cell:not(.x):not(.circle):hover::after {
+.board.oh .cell:not(.x):not(.oh):hover::after {
     width: calc(var(--mark-size) * .7);
     height: calc(var(--mark-size) * .7);
     background-color: var(--bg-color);
@@ -260,7 +260,7 @@ body {
     }
 }
 
-.winning-message {
+.win-msg {
     display: none;
     position: fixed;
     top: 0;
@@ -276,7 +276,7 @@ body {
     flex-direction: column;
 }
 
-.winning-message button {
+.win-msg button {
     font-size: calc(var(--sizer) * .25);
     background-color: rgba(85, 85, 255, .7);
     border: 1px solid black;
@@ -285,12 +285,12 @@ body {
     cursor: pointer;
 }
 
-.winning-message button:hover {
+.win-msg button:hover {
     background-color: rgba(85, 187, 85, .7);
     color: rgba(255, 255, 255, .5);;
 }
 
-.winning-message.show {
+.win-msg.show {
     display: flex;
 }
 
@@ -333,19 +333,19 @@ body {
 
   @media only screen and (min-width: 1441px) and (max-width: 1920px) {
     :root {
-        --sizer: 310px;
+        --sizer: 290px;
     }
   }
 
   @media only screen and (min-width: 1921px) and (max-width: 2000px) {
     :root {
-        --sizer: 330px;
+        --sizer: 310px;
     }
   }
 
   @media only screen and (min-width: 2001px) and (max-width: 2559px) {
     :root {
-        --sizer: 350px;
+        --sizer: 330px;
     }
   }
 

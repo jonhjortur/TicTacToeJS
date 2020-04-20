@@ -1,94 +1,91 @@
 const X_CLASS = 'x'
-const CIRCLE_CLASS = 'circle'
-const WINNING_COMBINATIONS = [
-    [0, 1, 2],
+const OH_CLASS = 'oh'
+const WINS = [
+    [2, 5, 8],[0, 4, 8],
+    [0, 1, 2],[2, 4, 6],
     [3, 4, 5],
     [6, 7, 8],
     [0, 3, 6],
     [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
 ]
-const cellElements = document.querySelectorAll('[data-cell]')
+const cellElems = document.querySelectorAll('[data-cell]')
 const board = document.getElementById('board')
-const winningMessageElement = document.getElementById('winningMessage')
-const restarButton = document.getElementById('restartButton')
-const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
-let circleTurn
+const winMsgElem = document.getElementById('winMsg')
+const restartBtn = document.getElementById('restartBtn')
+const winMsgTextElem = document.querySelector('[data-winning-message-text]')
+let ohTurn
 
 startGame()
 
-restarButton.addEventListener('click', startGame)
+restartBtn.addEventListener('click', startGame)
 
 function startGame() {
-    circleTurn = false
-    cellElements.forEach(cell => {
+    ohTurn = false
+    cellElems.forEach(cell => {
         cell.classList.remove(X_CLASS)
-        cell.classList.remove(CIRCLE_CLASS)
+        cell.classList.remove(OH_CLASS)
         cell.removeEventListener('click', handleClick)
         cell.addEventListener('click', handleClick, { once: true })
     })
-    setBoardHoverClass()
-    winningMessageElement.classList.remove('show')
+    setHoverClass()
+    winMsgElem.classList.remove('show')
 }
 
 function handleClick(e) {
-    //place mark
     const cell = e.target
-    const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
-    placeMark(cell, currentClass)
-    //check win
-    if (checkWin(currentClass)) {
+    const currClass = ohTurn ? OH_CLASS : X_CLASS
+    setCurrClass(cell, currClass)
+    
+    if (checkWin(currClass)) {
        endGame(false)
-    } else if (isDraw()) {
-        //check draw
+    }
+    else if (isDraw()) {
         endGame(true)
-    } else {
-        //switch turns
-        swapTurns()
-        setBoardHoverClass()
+    }
+    else {
+        switchTurns()
+        setHoverClass()
     }
 }
 
 function endGame(draw) {
     if (draw) {
-        winningMessageTextElement.innerText = "JAFNTEFLI"
+        winMsgTextElem.innerText = "JAFNTEFLI"
     } else {
-        winningMessageTextElement.innerText = `${circleTurn ? "O" : "X"} VANN`
+        winMsgTextElem.innerText = `${ohTurn ? "O" : "X"} VANN`
     }
-    winningMessageElement.classList.add('show')
+    winMsgElem.classList.add('show')
 }
 
 function isDraw() {
-    return [...cellElements].every(cell => {
+    return [...cellElems].every(cell => {
         return cell.classList.contains(X_CLASS) ||
-        cell.classList.contains(CIRCLE_CLASS)
+        cell.classList.contains(OH_CLASS)
     })
 }
 
-function placeMark(cell, currentClass) {
-    cell.classList.add(currentClass)
+function setCurrClass(cell, currClass) {
+    cell.classList.add(currClass)
 }
 
-function swapTurns() {
-    circleTurn = !circleTurn
+function switchTurns() {
+    ohTurn = !ohTurn
 }
 
-function setBoardHoverClass() {
+function setHoverClass() {
     board.classList.remove(X_CLASS)
-    board.classList.remove(CIRCLE_CLASS)
-    if (circleTurn) {
-        board.classList.add(CIRCLE_CLASS)
+    board.classList.remove(OH_CLASS)
+    if (ohTurn) {
+        board.classList.add(OH_CLASS)
     } else {
         board.classList.add(X_CLASS)
     }
 }
 
-function checkWin(currentClass) {
-    return WINNING_COMBINATIONS.some(combination => {
+function checkWin(currClass) {
+    return WINS.some(combination => {
         return combination.every(index => {
-            return cellElements[index].classList.contains(currentClass)
+            return cellElems[index].classList.contains(currClass)
         })
     })
 }
