@@ -86,7 +86,7 @@ body {
     content: '';
     position: absolute;
     width: calc(var(--mark-size) * .15);
-    animation: XOutBefore 1s;
+    animation: XOutBefore .7s;
     animation-fill-mode: forwards;
 }
 
@@ -99,7 +99,7 @@ body {
     content: '';
     position: absolute;
     width: calc(var(--mark-size) * .15);
-    animation: XOutAfter 1s;
+    animation: XOutAfter .7s;
     animation-fill-mode: forwards;
 }
 .board.x .cell:not(.x):not(.oh):hover::after  {
@@ -132,8 +132,8 @@ body {
         height: 0px;
     }
     100% {
+        height: var(--mark-size);
         transform: rotate(45deg);
-        height: var(--mark-size)
     }
 }
 
@@ -163,8 +163,8 @@ body {
         height: 0px;
     }
     100% {
+        height: var(--mark-size);
         transform: rotate(-45deg);
-        height: var(--mark-size)
     }
 }
 
@@ -178,7 +178,7 @@ body {
 }
 
 .cell.oh::before {
-    animation: OoutBefore 1s;
+    animation: OoutBefore 1.1s;
     animation-fill-mode: forwards;
 }
 .board.oh .cell:not(.x):not(.oh):hover::before {
@@ -189,7 +189,7 @@ body {
 
 .cell.oh::after {
     background-color: var(--bg-color);
-    animation: OoutAfter 1s;
+    animation: OoutAfter .9s;
     animation-fill-mode: forwards;
 }
 .board.oh .cell:not(.x):not(.oh):hover::after {
